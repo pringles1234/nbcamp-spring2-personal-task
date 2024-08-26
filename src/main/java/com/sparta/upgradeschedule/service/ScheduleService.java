@@ -6,6 +6,7 @@ import com.sparta.upgradeschedule.dto.response.DeleteScheduleResponseDto;
 import com.sparta.upgradeschedule.entity.Schedule;
 import com.sparta.upgradeschedule.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ScheduleService {
@@ -16,6 +17,7 @@ public class ScheduleService {
         this.scheduleRepository = scheduleRepository;
     }
 
+    @Transactional
     public CreateScheduleResponseDto createSchedule(CreateScheduleRequestDto createRequestDto) {
         // createRequestDto -> Entity
         Schedule schedule = new Schedule(createRequestDto);
@@ -29,12 +31,14 @@ public class ScheduleService {
         return getScheduleResponseDto;
     }
 
+    @Transactional(readOnly = true)
     public Schedule getScheduleById(Long scheduleId) {
         return scheduleRepository.findById(scheduleId).orElseThrow(() ->
                 new IllegalArgumentException("선택한 일정은 존재하지 않습니다.")
         );
     }
 
+    @Transactional
     public DeleteScheduleResponseDto deleteSchedule(Long scheduleId) {
 
         try {

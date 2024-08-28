@@ -22,10 +22,14 @@ public class Schedule extends com.sparta.memo.entity.Timestamped {
     private Long userId;
     @Column(nullable = false)
     private String title;
+    @Column(columnDefinition = "text")
     private String contents;
 
     @OneToMany(mappedBy = "schedule", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private List<Reply> replyList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "schedule")
+    private List<UserSchedule> userScheduleList = new ArrayList<>();
 
 
     public Schedule(CreateScheduleRequestDto createRequestDto) {

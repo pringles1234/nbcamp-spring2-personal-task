@@ -40,7 +40,4 @@ public class ReplyController {
         return replyService.deleteReply(replyId);
     }
 
-
-
-
 }

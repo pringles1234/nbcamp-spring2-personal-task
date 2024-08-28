@@ -75,9 +75,7 @@ public class ScheduleService {
 
     public Page<GetSchedulesResponseDto> getSchedules(Pageable pageable){
         Page<Schedule> pageSchedule = scheduleRepository.findAll(pageable);
-        Page<GetSchedulesResponseDto> getSchedulesResponseDtos = pageSchedule.map(
-                m -> new GetSchedulesResponseDto(m)
-        );
-        return getSchedulesResponseDtos;
+
+        return pageSchedule.map(GetSchedulesResponseDto::new);
     }
 }

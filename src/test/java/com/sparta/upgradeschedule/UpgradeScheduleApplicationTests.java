@@ -1,10 +1,10 @@
-package com.sparta.springpersonaltask2;
+package com.sparta.upgradeschedule;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringPersonalTask2ApplicationTests {
+class UpgradeScheduleApplicationTests {
 
     @Test
     void contextLoads() {

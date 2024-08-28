@@ -1,10 +1,14 @@
 package com.sparta.upgradeschedule.controller;
 
 import com.sparta.upgradeschedule.dto.request.CreateScheduleRequestDto;
-import com.sparta.upgradeschedule.dto.response.CreateScheduleResponseDto;
-import com.sparta.upgradeschedule.dto.response.DeleteScheduleResponseDto;
+import com.sparta.upgradeschedule.dto.request.UpdateScheduleRequestDto;
+import com.sparta.upgradeschedule.dto.response.*;
 import com.sparta.upgradeschedule.entity.Schedule;
 import com.sparta.upgradeschedule.service.ScheduleService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,15 +27,33 @@ public class ScheduleController {
     }
 
     @GetMapping("/schedule/{id}")
-    public CreateScheduleResponseDto getScheduleById(@PathVariable(value = "id") Long scheduleId){
+    public GetScheduleResponseDto getScheduleById(@PathVariable(value = "id") Long scheduleId){
 
         Schedule scheduleById = scheduleService.getScheduleById(scheduleId);
-        CreateScheduleResponseDto getScheduleResponseDto = new CreateScheduleResponseDto(scheduleById);
+        GetScheduleResponseDto getScheduleResponseDto = new GetScheduleResponseDto(scheduleById);
         return getScheduleResponseDto;
     }
+
+    @PutMapping("/schedule/{id}")
+    public UpdateScheduleResponseDto updateSchedule(@PathVariable(value = "id") Long scheduleId, @RequestBody UpdateScheduleRequestDto updateScheduleRequestDto){
+        return scheduleService.updateSchedule(scheduleId, updateScheduleRequestDto);
+    }
+
     @DeleteMapping("/schedule/{id}")
     public DeleteScheduleResponseDto deleteSchedule(@PathVariable(value = "id") Long scheduleId){
         return scheduleService.deleteSchedule(scheduleId);
+    }
+
+    @GetMapping("/schedule")
+    public Page<GetSchedulesResponseDto> getSchedules(
+            @RequestParam int page,
+            @RequestParam(defaultValue = "10") int size){
+
+        Sort sort = Sort.by("updatedate").descending();
+
+        Pageable pageable = PageRequest.of(page-1, size, sort);
+
+        return scheduleService.getSchedules(pageable);
     }
 
 }

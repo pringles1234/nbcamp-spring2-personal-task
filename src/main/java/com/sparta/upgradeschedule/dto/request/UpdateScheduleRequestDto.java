@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class UpdateScheduleRequestDto {
 
-    private String username;
+    private Long userId;
     private String title;
     private String contents;
 

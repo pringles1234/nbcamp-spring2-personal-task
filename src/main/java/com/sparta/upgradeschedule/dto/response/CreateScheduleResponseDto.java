@@ -9,19 +9,19 @@ import java.time.LocalDateTime;
 public class CreateScheduleResponseDto {
 
     private Long scheduleId;
-    private String username;
+    private Long userID;
     private String title;
     private String contents;
-    private LocalDateTime createdate;
-    private LocalDateTime updatedate;
+    private LocalDateTime createDate;
+    private LocalDateTime updateDate;
 
     public CreateScheduleResponseDto(Schedule schedule){
         this.scheduleId = schedule.getScheduleId();
-        this.username = schedule.getUsername();
+        this.userID = schedule.getUserId();
         this.title = schedule.getTitle();
         this.contents = schedule.getContents();
-        this.createdate = schedule.getCreatedate();
-        this.updatedate = schedule.getUpdatedate();
+        this.createDate = schedule.getCreateDate();
+        this.updateDate = schedule.getUpdateDate();
     }
 
 }

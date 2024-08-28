@@ -15,10 +15,11 @@ import java.util.List;
 @NoArgsConstructor
 public class Schedule extends com.sparta.memo.entity.Timestamped {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long scheduleId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto(Jpa가 id 관리해서 늘려줌), Identity(mysql이 id 관리해서 늘려줌)
+    private long scheduleId;
     @Column(nullable = false)
-    private String username;
+
+    private Long userId;
     @Column(nullable = false)
     private String title;
     private String contents;
@@ -26,16 +27,17 @@ public class Schedule extends com.sparta.memo.entity.Timestamped {
     @OneToMany(mappedBy = "schedule", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private List<Reply> replyList = new ArrayList<>();
 
+
     public Schedule(CreateScheduleRequestDto createRequestDto) {
-        this.username = createRequestDto.getUsername();
+        this.userId = createRequestDto.getUserId();
         this.title = createRequestDto.getTitle();
         this.contents = createRequestDto.getContents();
     }
 
     public void updateSchedule(UpdateScheduleRequestDto updateScheduleRequestDto){
-        this.username = updateScheduleRequestDto.getUsername();
+        this.userId = updateScheduleRequestDto.getUserId();
         this.title = updateScheduleRequestDto.getTitle();
         this.contents = updateScheduleRequestDto.getContents();
-        this.getUpdatedate();
+        this.getUpdateDate();
     }
 }

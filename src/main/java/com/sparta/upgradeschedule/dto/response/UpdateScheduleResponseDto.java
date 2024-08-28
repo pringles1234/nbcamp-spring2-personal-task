@@ -9,17 +9,17 @@ import java.time.LocalDateTime;
 @Setter
 public class UpdateScheduleResponseDto {
     private Long scheduleId;
-    private String username;
+    private Long userId;
     private String title;
     private String contents;
-    private LocalDateTime updatedate;
+    private LocalDateTime updateDate;
 
-    public UpdateScheduleResponseDto(Long scheduleId, String username, String title, String contents, LocalDateTime updatedate){
+    public UpdateScheduleResponseDto(Long scheduleId, Long userId, String title, String contents, LocalDateTime updateDate){
         this.scheduleId = scheduleId;
-        this.username = username;
+        this.userId = userId;
         this.title = title;
         this.contents = contents;
-        this.updatedate = updatedate;
+        this.updateDate = updateDate;
     }
 }
 

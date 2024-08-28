@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Reply extends com.sparta.memo.entity.Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long replyId;
+    private long replyId;
     @Column(nullable = false)
     private String username;
     @Column(nullable = false)
@@ -34,6 +34,6 @@ public class Reply extends com.sparta.memo.entity.Timestamped {
     public void updateReply(UpdateReplyRequestDto updateReplyRequestDto) {
         this.username = updateReplyRequestDto.getUsername();
         this.contents = updateReplyRequestDto.getContents();
-        this.getUpdatedate();
+        this.getUpdateDate();
     }
 }

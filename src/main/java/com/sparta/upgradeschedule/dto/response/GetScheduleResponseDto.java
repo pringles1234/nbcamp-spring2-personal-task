@@ -11,16 +11,16 @@ import java.time.LocalDateTime;
 public class GetScheduleResponseDto {
 
     private Long scheduleId;
-    private String username;
+    private Long userId;
     private String title;
     private String contents;
-    private LocalDateTime updatedate;
+    private LocalDateTime updateDate;
 
     public GetScheduleResponseDto(Schedule schedule){
         this.scheduleId = schedule.getScheduleId();
-        this.username = schedule.getUsername();
+        this.userId = schedule.getUserId();
         this.title = schedule.getTitle();
         this.contents = schedule.getContents();
-        this.updatedate = schedule.getUpdatedate();
+        this.updateDate = schedule.getUpdateDate();
     }
 }

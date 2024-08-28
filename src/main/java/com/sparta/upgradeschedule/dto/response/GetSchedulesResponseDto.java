@@ -15,14 +15,14 @@ public class GetSchedulesResponseDto {
     private int replyCount;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
-    private String username;
+    private Long userId;
 
     public GetSchedulesResponseDto(Schedule schedule){
         title = schedule.getTitle();
         contents = schedule.getContents();
-        createDate = schedule.getCreatedate();
-        updateDate = schedule.getUpdatedate();
-        username = schedule.getUsername();
+        createDate = schedule.getCreateDate();
+        updateDate = schedule.getUpdateDate();
+        userId = schedule.getUserId();
         replyCount = schedule.getReplyList().size();
 
     }

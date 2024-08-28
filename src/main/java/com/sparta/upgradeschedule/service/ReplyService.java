@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+//@Transactional
+
 public class ReplyService {
 
     private ReplyRepository replyRepository;
@@ -35,7 +37,7 @@ public class ReplyService {
         Schedule schedule = scheduleRepository.findById(scheduleId)
                 .orElseThrow(() -> new IllegalArgumentException("선택한 일정은 존재하지 않습니다."));
 
-        // 2. 댓글 생성
+        // 2. 댓글 생성 -> 메서드로 뽑아서 넣기, static 메서드로 넣는방법도 있음(이팩티브 자바 책 참고, 구글링)
         Reply reply = new Reply(createReplyRequestDto.getUsername(), createReplyRequestDto.getContents(), schedule);
 
         // 3. 댓글 저장
@@ -59,7 +61,7 @@ public class ReplyService {
         // 3. 댓글 리스트를 DTO로 변환
         List<GetReplyDto> replyDtoList = new ArrayList<>();
         for (Reply reply : replies) {
-            GetReplyDto getReplyDto = new GetReplyDto(reply.getReplyId(), reply.getUsername(), reply.getContents(), reply.getUpdatedate());
+            GetReplyDto getReplyDto = new GetReplyDto(reply.getReplyId(), reply.getUsername(), reply.getContents(), reply.getUpdateDate());
             replyDtoList.add(getReplyDto);
         }
 
@@ -81,7 +83,7 @@ public class ReplyService {
             replyRepository.save(reply);
 
             // 4. 수정된 데이터를 포함한 응답 반환
-            return new UpdateReplyResponseDto(reply.getReplyId(), reply.getUsername(), reply.getContents(), reply.getUpdatedate());
+            return new UpdateReplyResponseDto(reply.getReplyId(), reply.getUsername(), reply.getContents(), reply.getUpdateDate());
 
         }catch (Exception e){
             throw new IllegalArgumentException("댓글 업데이트 중 문제가 발생했습니다.", e);

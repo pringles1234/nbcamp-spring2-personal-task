@@ -10,14 +10,14 @@ public class CreateReplyResponseDto {
     private Long replyId;
     private String username;
     private String contents;
-    private LocalDateTime createdate;
-    private LocalDateTime updatedate;
+    private LocalDateTime createDate;
+    private LocalDateTime updateDate;
 
     public CreateReplyResponseDto(Reply reply){
         this.replyId = reply.getReplyId();
         this.username = reply.getUsername();
         this.contents = reply.getContents();
-        this.createdate = reply.getCreatedate();
-        this.updatedate = reply.getUpdatedate();
+        this.createDate = reply.getCreateDate();
+        this.updateDate = reply.getUpdateDate();
     }
 }

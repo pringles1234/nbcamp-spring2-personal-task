@@ -12,13 +12,13 @@ public class GetReplyDto {
     private Long replyId;
     private String username;
     private String contents;
-    private LocalDateTime updatedate;
+    private LocalDateTime updateDate;
 
-    public GetReplyDto(Long replyId, String username, String contents, LocalDateTime updatedate) {
+    public GetReplyDto(Long replyId, String username, String contents, LocalDateTime updateDate) {
         this.replyId = replyId;
         this.username = username;
         this.contents = contents;
-        this.updatedate = updatedate;
+        this.updateDate = updateDate;
 
     }
 }

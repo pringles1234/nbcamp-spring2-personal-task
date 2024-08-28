@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+//@RequiredArgsConstructor
 public class ScheduleController {
 
     private ScheduleService scheduleService;
@@ -45,11 +46,11 @@ public class ScheduleController {
     }
 
     @GetMapping("/schedule")
-    public Page<GetSchedulesResponseDto> getSchedules(
+    public Page<GetSchedulesResponseDto> getSchedules ( //getScheduleList, getSchedulePages
             @RequestParam int page,
             @RequestParam(defaultValue = "10") int size){
 
-        Sort sort = Sort.by("updatedate").descending();
+        Sort sort = Sort.by("updateDate").descending();
 
         Pageable pageable = PageRequest.of(page-1, size, sort);
 

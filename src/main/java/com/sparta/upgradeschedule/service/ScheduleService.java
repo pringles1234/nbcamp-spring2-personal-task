@@ -31,9 +31,9 @@ public class ScheduleService {
         Schedule saveSchedule = scheduleRepository.save(schedule);
 
         // Entity -> CreateScheduleResponseDto
-        CreateScheduleResponseDto getScheduleResponseDto = new CreateScheduleResponseDto(saveSchedule);
+        CreateScheduleResponseDto createScheduleResponseDto = new CreateScheduleResponseDto(saveSchedule);
 
-        return getScheduleResponseDto;
+        return createScheduleResponseDto;
     }
 
     @Transactional(readOnly = true)
@@ -56,7 +56,7 @@ public class ScheduleService {
             scheduleRepository.save(schedule);
 
             // 4. 수정된 데이터를 포함한 응답 반환
-            return new UpdateScheduleResponseDto(schedule.getScheduleId(), schedule.getUsername(), schedule.getTitle(), schedule.getContents(), schedule.getUpdatedate());
+            return new UpdateScheduleResponseDto(schedule.getScheduleId(), schedule.getUserId(), schedule.getTitle(), schedule.getContents(), schedule.getUpdateDate());
         }catch (Exception e){
             throw new IllegalArgumentException("스케줄 업데이트 중 문제가 발생했습니다.", e);
         }

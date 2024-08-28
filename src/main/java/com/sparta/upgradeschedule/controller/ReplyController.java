@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class ReplyController {
 
-    private ReplyService replyService;
+    // reply 명확하게 분리하는게 좋다! ("/api/reply")
 
+    // /reply/schedule -> 댓글 어떤거에 대한 댓글이야?
+
+    private ReplyService replyService;
 
     public ReplyController(ReplyService replyService) {
         this.replyService = replyService;

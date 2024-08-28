@@ -17,8 +17,8 @@ public class Schedule extends com.sparta.memo.entity.Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto(Jpa가 id 관리해서 늘려줌), Identity(mysql이 id 관리해서 늘려줌)
     private long scheduleId;
-    @Column(nullable = false)
 
+    @Column(nullable = false)
     private Long userId;
     @Column(nullable = false)
     private String title;
@@ -32,6 +32,7 @@ public class Schedule extends com.sparta.memo.entity.Timestamped {
     private List<UserSchedule> userScheduleList = new ArrayList<>();
 
 
+    //createRequestDto -> Entity
     public Schedule(CreateScheduleRequestDto createRequestDto) {
         this.userId = createRequestDto.getUserId();
         this.title = createRequestDto.getTitle();
@@ -44,4 +45,10 @@ public class Schedule extends com.sparta.memo.entity.Timestamped {
         this.contents = updateScheduleRequestDto.getContents();
         this.getUpdateDate();
     }
+
+    public void addUserSchedule(UserSchedule userSchedule) {
+        userScheduleList.add(userSchedule);
+        userSchedule.setSchedule(this);
+    }
+
 }

@@ -30,4 +30,6 @@ public class User extends com.sparta.memo.entity.Timestamped {
         this.username = createUserRequestDto.getUsername();
         this.email = createUserRequestDto.getEmail();
     }
+
+
 }

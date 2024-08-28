@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 
 public class CreateUserRequestDto {
+    private Long userID;
     private String username;
     private String email;
 }
